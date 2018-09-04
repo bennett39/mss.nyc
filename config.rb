@@ -20,7 +20,24 @@ set :markdown, fenced_code_blocks: true, smartypants: true
 
 helpers do
   def pdf_songs
-    data.songs.reject { |song| song['chordpro'].nil? }
+    data.songs.reject { |song| song['songpro'].nil? }
+  end
+
+  def difficulty_text(difficulty)
+    case difficulty
+    when 1
+      'Easy'
+    when 2
+      'Medium'
+    end
+  end
+  def difficulty_label(difficulty)
+    case difficulty
+    when 1
+      '<span class="badge badge-success">Easy</span>'
+    when 2
+      '<span class="badge badge-warning">Medium</span>'
+    end
   end
 end
 
@@ -41,21 +58,3 @@ class SongProTemplate < Tilt::Template
 end
 
 Tilt.register SongProTemplate, 'sng'
-
-class ChordProTemplate < Tilt::Template
-  self.default_mime_type = 'text/html'
-
-  def prepare
-    @output = nil
-  end
-
-  def evaluate(scope, locals, &block)
-    @output ||= Chordpro.html(data)
-  end
-
-  def allows_script?
-    false
-  end
-end
-
-Tilt.register ChordProTemplate, 'crd'
