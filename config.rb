@@ -16,6 +16,12 @@ activate :s3_sync do |s3_sync|
   s3_sync.acl    = 'public-read'
 end
 
+Dir.glob('source/songs/*.html.sng').each do |filename|
+  contents = File.read(filename)
+  song = SongPro.parse(contents)
+  proxy "/songs/#{song.title.parameterize}.html", '/songs/template.html', locals: { song: song}, ignore: true
+end
+
 activate :pdf_generator
 
 set :markdown_engine, :redcarpet
