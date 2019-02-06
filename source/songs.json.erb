@@ -1,14 +1,15 @@
 {
-  "songs": [
-    <% Dir.glob('source/songs/*.html.sng').sort.map do |filename| %>
-    <% song = SongPro.parse(File.read(filename)) %>
-    {
-      "title": "<%= song.title %>",
-      "artist": "<%= song.artist %>",
-      "difficulty": "<%= song.custom[:difficulty] %>",
-      "listen": "<%= song.custom[:spotify] %>",
-      "songpro": "<%= song.title.parameterize %>"
-    }
-    <% end.join(",") %>
-  ]
+  "songs":
+    <%=
+      Dir.glob('source/songs/*.html.sng').sort.collect do |filename|
+       song = SongPro.parse(File.read(filename))
+          {
+            title: song.title,
+            artist: song.artist,
+            difficulty: song.custom[:difficulty],
+            listen: song.custom[:spotify],
+            path: song.title.parameterize
+            }
+      end.to_json
+     %>
 }
