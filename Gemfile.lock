@@ -137,6 +137,7 @@ GEM
     rack (2.0.5)
     rack-contrib (2.1.0)
       rack (~> 2.0)
+    rake (12.3.2)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -169,6 +170,7 @@ DEPENDENCIES
   pdfkit
   puma
   rack-contrib
+  rake
   redcarpet
   song_pro!
   wkhtmltopdf-binary
