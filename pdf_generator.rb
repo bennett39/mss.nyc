@@ -93,7 +93,7 @@ class PdfGenerator < Middleman::Extension
       pdf = PDFKit.new(
         html,
           PDF_OPTIONS.merge(
-            header_right: 'http://mss.nyc/',
+            header_right: 'Canadian Island Songbook',
             header_font_size: 9,
             footer_center: "#{song['title']} by #{song['artist']}",
             footer_font_size: 9
@@ -103,7 +103,7 @@ class PdfGenerator < Middleman::Extension
       pdf.stylesheets << 'build/stylesheets/site.css'
       pdf.to_file(pdf_path)
     end
-    
+
   end
 
   def generate_songbook_pdf
