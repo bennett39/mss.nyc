@@ -13,3 +13,8 @@ task deploy: [:build] do
   system 'bundle exec middleman s3_sync'
 end
 
+namespace :assets do
+  task :precompile do
+    sh "bundle exec middleman build"
+  end
+end
