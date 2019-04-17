@@ -1,4 +1,4 @@
-# mss.nyc
+# Canadian Island Songbook
 
 [Middleman](https://middlemanapp.com/) web site for providing the lyrics and chords to songs using the [SongPro](https://github.com/spilth/song_pro) format.
 
